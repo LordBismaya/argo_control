@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joystick" default="true" />
+
+  <group ns="joy_teleop">
+
+    <rosparam command="load" file="$(find argo_control)/config/teleop.yaml" />
+
+    <node pkg="joy" type="joy_node" name="joy_node">
+      <param name="dev" value="$(arg joy_dev)" />
+    </node>
+
+    <node pkg="argo_base_control" type="argo_base_control_gazebo_node" name="argo_base_control_gazebo"/>
+  </group>
+
+</launch>
